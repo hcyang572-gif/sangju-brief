@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1080" />
+  <title>상주 모닝 브리핑 카드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=block" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    :root {
+      --paper: #fbf6ea; --sheet: #fffdf6; --ink: #2b2a28; --ink-2: #45423b; --ink-3: #6b665c;
+      --orange: #F08A24; --orange-ink: #a34e0a; --hl: rgba(255, 222, 64, .8); --caution: #c2361d;
+      --rule: rgba(61, 124, 201, .12); --rule-line: rgba(61, 124, 201, .2);
+      --hand: "Gaegu", "Pretendard Variable", sans-serif; --label: "Gaegu", "Pretendard Variable", sans-serif;
+      --sans: "Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif;
+      --wob: 255px 15px 225px 15px / 15px 225px 15px 255px;
+      --wob-circle: 52% 48% 55% 45% / 47% 55% 45% 53%;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1080px; height: 1350px; overflow: hidden; background: var(--paper); }
+    body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; word-break: keep-all; }
+    .card {
+      position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 60px 64px 56px; display: flex; flex-direction: column;
+      background-color: var(--paper);
+      background-image: linear-gradient(var(--rule) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--rule) 1.5px, transparent 1.5px);
+      background-size: 40px 40px; background-position: -1px -1px;
+    }
+    .card::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .7;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .15  0 0 0 .1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+    .z { position: relative; z-index: 2; }
+    .wob { position: absolute; inset: 0; pointer-events: none; border: 3px solid var(--ink); border-radius: var(--wob); filter: url(#wobble); opacity: .9; }
+    .tape { position: absolute; z-index: 3; top: -20px; left: 50%; width: 170px; height: 42px; transform: translateX(-50%) rotate(var(--tr, -3deg));
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,.25) 0 9px, transparent 9px 18px), rgba(244, 196, 98, .62);
+      clip-path: polygon(0 8%, 4% 0, 8% 10%, 12% 0, 16% 8%, 20% 0, 80% 0, 84% 8%, 88% 0, 92% 10%, 96% 0, 100% 8%, 100% 92%, 96% 100%, 92% 90%, 88% 100%, 84% 92%, 80% 100%, 20% 100%, 16% 92%, 12% 100%, 8% 90%, 4% 100%, 0 92%); }
+
+    /* head */
+    .head { display: flex; justify-content: space-between; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .brand svg { width: 64px; height: 64px; transform: rotate(-8deg); }
+    .brand b { display: block; font-family: var(--hand); letter-spacing: -.05em; font-weight: 700; font-size: 49.2px; line-height: 1; }
+    .date { text-align: right; font-family: var(--label); letter-spacing: -.05em; font-weight: 700; line-height: 1.1; }
+    .date b { display: block; font-size: 40px; font-variant-numeric: tabular-nums; }
+    .date span { font-size: 30px; color: var(--orange-ink); }
+
+    /* cover */
+    .hero { display: grid; grid-template-columns: 1fr 250px; gap: 18px; align-items: end; margin-top: 18px; }
+    .kicker { font-family: var(--label); letter-spacing: -.05em; font-weight: 700; font-size: 34px; color: var(--orange-ink); }
+    .headline { max-width: 680px; font-family: var(--hand); font-weight: 700; font-size: 88.6px; line-height: 1.02; letter-spacing: -.05em; margin-top: 4px; }
+    .hl { background: linear-gradient(transparent 52%, var(--hl) 52%, var(--hl) 92%, transparent 92%); -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 4px; }
+    .squiggle { display: block; width: 360px; height: 22px; margin-top: 6px; fill: none; stroke: var(--orange); stroke-width: 4.5; stroke-linecap: round; }
+    .chara { position: relative; width: 250px; justify-self: end; }
+    .chara svg { display: block; width: 100%; height: auto; }
+    .bubble { position: absolute; z-index: 3; white-space: nowrap; font-family: var(--hand); letter-spacing: -.05em; font-weight: 700; font-size: 37.7px; line-height: 1; color: var(--ink);
+      background: var(--sheet); border: 3px solid var(--ink); border-radius: var(--wob); padding: 10px 22px 14px; box-shadow: 3px 4px 0 rgba(43,42,40,.2); transform: rotate(-3deg); }
+    .bubble::after { content: ""; position: absolute; width: 22px; height: 22px; background: var(--sheet); border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink); }
+    .hero .bubble { right: -24px; top: -48px; }
+    .hero .bubble::after { right: 34px; bottom: -13px; transform: rotate(45deg) skew(8deg, 8deg); }
+
+    .list { list-style: none; margin-top: 36px; display: grid; gap: 18px; }
+    .list li { position: relative; display: grid; grid-template-columns: 76px 1fr; gap: 18px; align-items: center; padding: 18px 26px 18px 20px; border-radius: 3px 3px 22px 3px;
+      box-shadow: 0 2px 2px rgba(60,40,10,.1), 0 14px 20px -12px rgba(60,40,10,.4); }
+    .list li:nth-child(5n+1) { background: #fff1a8; transform: rotate(-.7deg); }
+    .list li:nth-child(5n+2) { background: #d9ecff; transform: rotate(.5deg); }
+    .list li:nth-child(5n+3) { background: #ffd9de; transform: rotate(-.4deg); }
+    .list li:nth-child(5n+4) { background: #e0f3cf; transform: rotate(.6deg); }
+    .list li:nth-child(5n+5) { background: #ffe4c4; transform: rotate(-.5deg); }
+    .numdot { display: grid; place-items: center; width: 70px; height: 70px; font-family: var(--hand); letter-spacing: -.05em; font-weight: 700; font-size: 44.3px; line-height: 1; color: var(--ink);
+      border: 3.5px solid var(--c, var(--ink)); border-radius: var(--wob-circle); background: rgba(255,255,255,.55); transform: rotate(-7deg); }
+    .list .cat { display: inline-flex; align-items: center; gap: 10px; font-family: var(--label); letter-spacing: -.05em; font-weight: 700; font-size: 28px; line-height: 1.1; color: var(--ink-2); margin-bottom: 4px; }
+    .list .cat::before { content: ""; width: 16px; height: 16px; border-radius: var(--wob-circle); background: var(--c); border: 2px solid var(--ink); }
+    .list .cat.caution::after { content: "주의"; color: var(--caution); border: 2.5px solid var(--caution); border-radius: var(--wob); padding: 0 10px; margin-left: 6px; transform: rotate(-4deg); }
+    .list .t { font-size: 34px; font-weight: 700; line-height: 1.32; letter-spacing: -.025em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    .foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 26px; font-family: var(--label); letter-spacing: -.05em; font-weight: 700; font-size: 28px; color: var(--ink-3); }
+    .foot .stats { display: flex; gap: 26px; }
+    .foot .stats b { color: var(--ink); margin-left: 8px; font-family: var(--hand); letter-spacing: -.05em; font-weight: 700; font-size: 36.1px; font-variant-numeric: tabular-nums; }
+    .foot .stats .alert b { color: var(--caution); }
+
+    /* item */
+    .memo { position: relative; margin-top: 44px; padding: 54px 56px 46px; background-color: var(--sheet); transform: rotate(-.6deg);
+      background-image: repeating-linear-gradient(transparent 0 57px, var(--rule-line) 57px 59px); background-position: 0 36px;
+      box-shadow: 0 2px 2px rgba(60,40,10,.08), 0 24px 34px -18px rgba(60,40,10,.45); border-radius: 4px; }
+    .memo .head2 { display: flex; align-items: center; gap: 18px; }
+    .memo .numdot { width: 100px; height: 100px; font-size: 78px; border-width: 4px; background: color-mix(in srgb, var(--c) 20%, #fff); }
+    .tag { display: inline-flex; font-family: var(--label); letter-spacing: -.05em; font-weight: 700; font-size: 32px; line-height: 1.2; padding: 6px 20px; border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px; background: color-mix(in srgb, var(--c) 32%, transparent); }
+    .tag.caution { background: none; color: var(--caution); border: 3px solid var(--caution); transform: rotate(-4deg); }
+    .title { font-family: var(--label); font-weight: 700; font-size: 66px; line-height: 1.28; letter-spacing: -.05em; margin-top: 28px; }
+    .summary { list-style: none; margin-top: 30px; display: grid; gap: 18px; }
+    .summary li { position: relative; padding-left: 46px; font-size: 36px; line-height: 1.5; color: var(--ink-2); letter-spacing: -.02em; }
+    .summary li::before { content: ""; position: absolute; left: 4px; top: .72em; width: 24px; height: 6px; border-radius: 4px; background: var(--c); transform: rotate(-10deg); }
+    .say { display: grid; grid-template-columns: 240px 1fr; gap: 26px; align-items: center; margin-top: auto; padding-top: 36px; }
+    .say + .foot { margin-top: 0; }
+    .say .chara { width: 240px; justify-self: start; }
+    .say .bubble { position: relative; white-space: normal; font-family: var(--sans); font-size: 34px; line-height: 1.45; padding: 20px 30px 24px; transform: rotate(-.8deg); color: var(--ink-2); }
+    .say .bubble::after { left: -14px; top: 48%; border: 0; border-left: 3px solid var(--ink); border-bottom: 3px solid var(--ink); transform: rotate(45deg) skew(8deg, 8deg); }
+    .say .bubble strong { display: block; font-family: var(--label); letter-spacing: -.05em; font-weight: 700; font-size: 32px; color: var(--orange-ink); margin-bottom: 2px; }
+    .say .bubble span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="6"/></filter>
+    </defs>
+    <symbol id="i-mark" viewBox="0 0 40 40">
+      <path d="M20 11c-7.2-.3-11.6 4.8-11.3 10.6.3 6 5.2 9.6 11.4 9.6 6.4 0 10.9-4 10.6-10-.3-6.1-4.2-9.9-10.7-10.2z" fill="#F08A24" stroke="#2b2a28" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M13.5 12.2c2.5 1.9 10 2.1 13 .1" stroke="#4f8a3c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <path d="M20 12.4c-.2-2.8.6-5 2.9-6.4" stroke="#2b2a28" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+  <div id="root"></div>
+  <script type="module">
+    import { charaSVG } from './characters.js';
+    const CATS = { '시정·행정': '#3d7cc9', '농업·특산': '#e8791a', '관광·문화': '#d0558f', '경제·일자리': '#2f9a6a', '사회·복지': '#c9962a', '안전·환경': '#1f9aa3', '교육·청년': '#7a5cc9', '의회·정치': '#8a6a4a' };
+    const WEEK = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const p = new URLSearchParams(location.search);
+    const type = p.get('type') || 'cover';
+
+    function head(d) {
+      const [y, m, day] = d.date.split('-').map(Number);
+      const w = new Date(y, m - 1, day).getDay();
+      return `<div class="head z">
+        <div class="brand"><svg aria-hidden="true"><use href="#i-mark"/></svg><b>상주 모닝 브리핑</b></div>
+        <div class="date"><b>${y}. ${String(m).padStart(2, '0')}. ${String(day).padStart(2, '0')}</b><span>${WEEK[w]} 아침</span></div>
+      </div>`;
+    }
+    function highlight(text, keywords = []) {
+      const keys = keywords.filter((k) => k && k.length >= 2);
+      return String(text).split(/\s+/).filter(Boolean).map((w) => keys.some((k) => w.includes(k)) ? `<span class="hl">${esc(w)}</span>` : esc(w)).join(' ');
+    }
+    function cover(d) {
+      const top = (d.top || []).slice(0, 5);
+      const s = d.stats || {};
+      const hl = d.headline || '오늘의 상주 소식';
+      return `<div class="card">
+        ${head(d)}
+        <div class="hero z">
+          <div>
+            <div class="kicker">오늘의 상주 한 줄</div>
+            <h1 class="headline">${highlight(hl, top[0]?.keywords || [])}</h1>
+            <svg class="squiggle" viewBox="0 0 300 22" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14C52 7 98 16 150 10s104-6 146 1"/></svg>
+          </div>
+          <div class="chara"><div class="bubble">오늘의 상주 소식!</div>${charaSVG('dori')}</div>
+        </div>
+        <ol class="list z">${top.map((it, i) => `<li style="--c:${CATS[it.category] || '#F08A24'}"><span class="numdot">${i + 1}</span><div><div class="cat ${it.tone === 'caution' ? 'caution' : ''}">${esc(it.category)}</div><div class="t">${esc(it.title)}</div></div></li>`).join('')}</ol>
+        <div class="foot z"><div class="stats"><span>수집<b>${s.collected ?? '-'}</b></span><span>주요<b>${s.selected ?? top.length}</b></span><span class="alert">주의<b>${s.alerts ?? 0}</b></span></div><span>매일 오전 8시 · ${d.mode === 'ai' ? 'AI 요약' : '자동 요약'}</span></div>
+      </div>`;
+    }
+    function item(d, it) {
+      const c = CATS[it.category] || '#F08A24';
+      const t = new Date(it.publishedAt);
+      const when = isNaN(t) ? '' : `${t.getMonth() + 1}.${t.getDate()} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
+      return `<div class="card" style="--c:${c}">
+        ${head(d)}
+        <div class="memo z">
+          <span class="tape"></span><span class="wob"></span>
+          <div class="head2"><span class="numdot">${it.rank}</span><span class="tag">${esc(it.category)}</span>${it.tone === 'caution' ? '<span class="tag caution">주의 이슈</span>' : ''}</div>
+          <h1 class="title"><span class="hl">${esc(it.title)}</span></h1>
+          <ul class="summary">${(it.summary || []).map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+        </div>
+        ${it.insight ? `<div class="say z"><div class="chara">${charaSVG('suni')}</div><div class="bubble"><strong>시정 참고</strong><span>${esc(it.insight)}</span></div></div>` : ''}
+        <div class="foot z"><span>${esc(it.source || '')}${when ? ' · ' + when : ''}</span><span>${it.rank} / ${d.top.length}</span></div>
+      </div>`;
+    }
+
+    // 실제 사용된 글자로 웹폰트(유니코드 subset)를 명시 로드 → fonts.ready
+    async function loadFonts() {
+      const text = document.body.innerText || '상주';
+      const specs = ['700 88px Gaegu', '700 40px Gaegu', '400 40px Gaegu', '700 34px "Pretendard Variable"', '400 34px "Pretendard Variable"'];
+      await Promise.race([
+        Promise.allSettled(specs.map((f) => document.fonts.load(f, text))),
+        new Promise((r) => setTimeout(r, 8000)),
+      ]);
+      await document.fonts.ready;
+    }
+
+    (async () => {
+      try {
+        const date = p.get('date');
+        const res = await fetch(date ? `/api/day/${encodeURIComponent(date)}` : '/api/latest');
+        const d = await res.json();
+        const root = document.getElementById('root');
+        if (type === 'item') {
+          const it = (d.top || []).find((x) => x.id === p.get('id')) || d.top?.[Number(p.get('rank') || 1) - 1];
+          root.innerHTML = it ? item(d, it) : cover(d);
+        } else {
+          root.innerHTML = cover(d);
+        }
+        await loadFonts();
+        // shrink headline / titles that still overflow (after real fonts are in)
+        const limit = 1350 - 50;
+        const overflow = () => { const f = document.querySelector('.foot'); return f && f.getBoundingClientRect().bottom > limit; };
+        for (const el of document.querySelectorAll('.headline, .title')) {
+          let size = parseFloat(getComputedStyle(el).fontSize);
+          const min = el.classList.contains('headline') ? 64 : 46;
+          const lh = () => parseFloat(getComputedStyle(el).lineHeight);
+          while ((el.getBoundingClientRect().height > lh() * 3.2 || overflow()) && size > min) { size -= 2; el.style.fontSize = size + 'px'; }
+        }
+        // last resort: tighten list / summary rhythm
+        let pad = 18;
+        while (overflow() && pad > 8) { pad -= 2; document.querySelectorAll('.list li').forEach((li) => (li.style.paddingBlock = `${pad}px`)); document.querySelectorAll('.list, .summary').forEach((s) => (s.style.gap = `${pad}px`)); }
+        // final step: drop trailing cover rows (keep >= 4); stats.selected stays as-is
+        const rows = () => document.querySelectorAll('.list li');
+        while (overflow() && rows().length > 4) rows()[rows().length - 1].remove();
+        await document.fonts.ready;
+      } catch (e) {
+        document.getElementById('root').innerHTML = `<div class="card"><h1 class="headline">카드 데이터를 불러오지 못했습니다</h1></div>`;
+      }
+      requestAnimationFrame(() => setTimeout(() => { window.__CARD_READY = true; }, 150));
+    })();
+  </script>
+</body>
+</html>

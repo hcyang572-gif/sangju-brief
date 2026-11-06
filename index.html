@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>상주 모닝 브리핑</title>
+  <meta name="description" content="경북 상주시 오늘의 주요 뉴스 카드 브리핑" />
+  <meta name="theme-color" content="#fbf6ea" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%23fbf6ea'/%3E%3Cpath d='M20 10c-7 0-11 5-11 11s5 10 11 10 11-4 11-10-4-11-11-11z' fill='%23F08A24' stroke='%232b2a28' stroke-width='2'/%3E%3Cpath d='M14 11c3 2 9 2 12 0' stroke='%234f8a3c' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script>
+    // 기본 = 라이트(종이). 사용자가 전환하면 그 선택을 기억
+    var t = 'light';
+    try { t = localStorage.getItem('smb-theme-v2') || 'light'; } catch (e) {}
+    document.documentElement.dataset.theme = t;
+    document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#27322d' : '#fbf6ea';
+  </script>
+</head>
+<body>
+  <!-- SVG: 손그림 필터 + 아이콘/낙서 심볼 -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7" />
+        <feDisplacementMap in="SourceGraphic" scale="3.2" />
+      </filter>
+      <filter id="wobble-lg" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="2" seed="3" />
+        <feDisplacementMap in="SourceGraphic" scale="5" />
+      </filter>
+    </defs>
+    <symbol id="i-mark" viewBox="0 0 40 40">
+      <path d="M20 11c-7.2-.3-11.6 4.8-11.3 10.6.3 6 5.2 9.6 11.4 9.6 6.4 0 10.9-4 10.6-10-.3-6.1-4.2-9.9-10.7-10.2z" fill="#F08A24" stroke="#2b2a28" stroke-width="1.8" stroke-linejoin="round" />
+      <path d="M13.5 12.2c2.5 1.9 10 2.1 13 .1" stroke="#4f8a3c" stroke-width="2.4" fill="none" stroke-linecap="round" />
+      <path d="M20 12.4c-.2-2.8.6-5 2.9-6.4" stroke="#2b2a28" stroke-width="1.8" fill="none" stroke-linecap="round" />
+      <path d="M14.5 18.5c.8-1.4 2-2.3 3.4-2.7" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".7" />
+    </symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.6 12.4a7.7 7.9 0 1 1-2.2-6M19.8 4.2l-.3 4.6-4.4-.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 4.2C7 4 3.1 7.2 3.2 11c0 2.6 1.6 4.6 4 5.9l-.8 3.3 4-2.6c.5.1 1 .1 1.5.1 5 0 8.9-3 8.9-6.8S17 4.3 12 4.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.8 14.6A8 8.1 0 0 1 9.4 4.2a8.1 8 0 1 0 10.4 10.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 8.1c-2.3 0-4 1.8-3.9 4 .1 2.2 1.7 3.8 3.9 3.8s4-1.7 3.9-3.9c0-2.2-1.6-3.9-3.9-3.9z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.6v2.1M12.1 19.3v2.1M4.7 4.8l1.5 1.3M17.9 17.8l1.4 1.5M2.6 12.1h2.1M19.4 11.9h2M4.8 19.3L6.2 18M17.8 6.1l1.5-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12.4c4.6-.6 9.6-.3 14.6-.2M13.6 6.4c2 2.2 3.6 3.9 5.6 5.9-2 1.6-3.8 3.4-5.4 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-flip" viewBox="0 0 24 24"><path d="M4.2 11.6a7.9 7.9 0 0 1 13.5-5.2L20 8.6M19.8 4v4.6h-4.6M19.8 12.4a7.9 7.9 0 0 1-13.5 5.2L4 15.4M4.2 20v-4.6h4.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.6c3.4 2 7 4 10.4 6.3-3.4 2.3-7 4.4-10.4 6.4.2-4.2.1-8.5 0-12.7z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6.2 5.8c4 3.8 7.8 8 11.6 12.2M18 6.1C13.8 9.9 10 14 6 18.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><path d="M11 4.4c-3.8-.1-6.7 2.8-6.6 6.6.1 3.6 3 6.3 6.6 6.2 3.6 0 6.4-2.9 6.3-6.5-.1-3.6-2.8-6.2-6.3-6.3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.8 16.1l4.4 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.8c3 5.2 5.9 10.6 8.9 16.1-5.9.2-11.9.1-17.8 0 2.9-5.4 5.9-10.8 8.9-16.1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9.8v4.8M12 17.3v.3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11.2M7.2 10.6c1.7 1.6 3.2 3.2 4.8 5 1.6-1.8 3.2-3.4 4.9-5M4.8 19.6c4.8.2 9.6.1 14.4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <!-- 낙서(드로잉 애니메이션용, pathLength=1) -->
+    <symbol id="d-underline" viewBox="0 0 300 22" preserveAspectRatio="none"><path pathLength="1" d="M4 14C52 7 98 16 150 10s104-6 146 1" /></symbol>
+    <symbol id="d-underline2" viewBox="0 0 300 26" preserveAspectRatio="none"><path pathLength="1" d="M4 10c60-5 140-6 290-1M30 20c70-4 150-5 240-2" /></symbol>
+    <symbol id="d-circle" viewBox="0 0 200 130"><path pathLength="1" d="M118 9C52 2 8 30 9 66c1 38 52 58 104 54 50-4 82-28 79-60C189 28 150 6 88 13" /></symbol>
+    <symbol id="d-arrow" viewBox="0 0 120 80"><path pathLength="1" d="M8 10c14 34 46 54 98 44" /><path pathLength="1" d="M88 40c7 5 13 10 18 14-6 5-12 10-16 17" /></symbol>
+    <symbol id="d-star" viewBox="0 0 100 100"><path pathLength="1" d="M50 7l11 31 34 1-27 20 10 33-28-20-28 20 10-33L5 39l34-1z" /></symbol>
+    <symbol id="d-spark" viewBox="0 0 60 60"><path pathLength="1" d="M30 6v14M30 40v14M6 30h14M40 30h14M14 14l8 8M38 38l8 8M46 14l-8 8M22 38l-8 8" /></symbol>
+  </svg>
+
+  <div class="veil" aria-hidden="true">
+    <div class="veil__inner">
+      <span class="chara chara--veil" id="veilChara"><span class="chara__float"><img src="./assets/dori.png" alt="" width="126" height="160" /></span></span>
+      <div class="veil__text">오늘의 상주 소식을 모으는 중<span class="veil__dots"><i>.</i><i>.</i><i>.</i></span></div>
+      <svg class="veil__line draw is-in" viewBox="0 0 300 22" aria-hidden="true"><use href="#d-underline" /></svg>
+    </div>
+  </div>
+
+  <div class="paper-bg" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <div class="shell topbar__inner">
+      <a class="brand" href="./" aria-label="상주 모닝 브리핑 홈">
+        <svg class="brand__mark" aria-hidden="true"><use href="#i-mark" /></svg>
+        <span class="brand__name">상주 모닝 브리핑<span class="brand__sub">sangju morning brief</span></span>
+      </a>
+      <div class="toolbar">
+        <label class="sr-only" for="dateSelect">날짜 선택</label>
+        <select class="select num" id="dateSelect"></select>
+        <button class="btn btn--icon" id="btnSearch" aria-label="최근 1주일 뉴스 검색" title="최근 1주일 뉴스 검색">
+          <svg aria-hidden="true"><use href="#i-search" /></svg>
+        </button>
+        <button class="btn" id="btnRefresh" title="지금 다시 수집·요약">
+          <svg aria-hidden="true"><use href="#i-refresh" /></svg><span class="btn__label">새로 수집</span>
+        </button>
+        <button class="btn btn--primary" id="btnKakao" style="display:none" title="오늘 카드를 카카오톡으로 보내기">
+          <svg aria-hidden="true"><use href="#i-send" /></svg><span class="btn__label">카톡 발송</span>
+        </button>
+        <button class="btn btn--icon" id="btnTheme" aria-label="종이·칠판 테마 전환">
+          <svg class="theme-icon--moon" aria-hidden="true"><use href="#i-moon" /></svg>
+          <svg class="theme-icon--sun" aria-hidden="true"><use href="#i-sun" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell" id="app" aria-live="polite">
+    <section class="hero">
+      <div>
+        <div class="skeleton" style="height:22px;width:180px"></div>
+        <div class="skeleton" style="height:120px;margin:24px 0"></div>
+        <div class="skeleton" style="height:60px"></div>
+      </div>
+      <div class="skeleton" style="height:460px"></div>
+    </section>
+  </main>
+
+  <div class="shell"><footer class="footer">
+    <span class="footer__mark">상주 · 쌀 · 누에 · 곶감</span>
+    <span>매일 오전 8시 자동 생성 · 기사 저작권은 각 언론사에 있습니다</span>
+  </footer></div>
+
+  <div class="story" id="story" role="dialog" aria-modal="true" aria-label="카드뉴스 보기">
+    <button class="btn btn--icon story__close" id="storyClose" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close" /></svg></button>
+    <div class="story__stage" id="storyStage">
+      <div class="story__progress" id="storyProgress"></div>
+    </div>
+    <div class="story__hint">탭으로 넘기기 · 길게 눌러 일시정지<span class="k"> · ← → · Esc 닫기</span></div>
+  </div>
+
+  <div class="toasts" id="toasts" role="status"></div>
+
+  <script src="./static-shim.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
